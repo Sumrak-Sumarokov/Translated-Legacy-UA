@@ -118,7 +118,7 @@ public class OldTranslationStorage {
 
     @Environment(EnvType.CLIENT)
     public String method_995(String string) {
-        String defaultValue = isDefaultLanguage() ? string : LanguageManager.CODE_TO_STORAGE
+        String defaultValue = isDefaultLanguage() ? string + ".name" : LanguageManager.CODE_TO_STORAGE
                 .get(LanguageManager.DEFAULT_LANGUAGE)
                 .method_995(string);
         return this.getOrDefault(string + ".name", defaultValue);
@@ -127,7 +127,7 @@ public class OldTranslationStorage {
     private String getOrDefault(String key, String defaultValue) {
         if (checkedVanilla) {
             return this.translations.getOrDefault(key, defaultValue);
-        } else if (key.equals(defaultValue) || defaultValue.isEmpty()){
+        } else if (key.equals(defaultValue) || defaultValue.isEmpty()) {
             ((TranslationStorageAccessor)TranslationStorage.getInstance()).getTranslations().forEach((vKey, value) -> {
                 if (!LanguageManager.CODE_TO_STORAGE
                         .get(LanguageManager.DEFAULT_LANGUAGE).hasKey((String) vKey)) {

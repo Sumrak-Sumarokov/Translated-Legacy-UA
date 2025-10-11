@@ -1,7 +1,8 @@
-package fr.catcore.translatedlegacy.babric.mixin;
+package fr.catcore.translatedlegacy.babric.mixin.nostation;
 
 import fr.catcore.translatedlegacy.babric.accessor.StatAccessor;
 import fr.catcore.translatedlegacy.babric.language.LanguageManager;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.class_498;
 import net.minecraft.class_542;
 import net.minecraft.client.resource.language.TranslationStorage;
@@ -28,9 +29,9 @@ public class StatMixin implements StatAccessor {
     public void init$callback(int string, String stringId, class_498 par3, CallbackInfo ci) {
         if (((Object)this) instanceof class_542) {
             this.stringId = stringId;
-            ((StatAccessor)(Object)this).setName(TranslationStorage.getInstance().get("stat." + this.stringId));
+            this.setName(TranslationStorage.getInstance().get("stat." + this.stringId));
             LanguageManager.registerCallback(code -> {
-                ((StatAccessor)(Object)this).setName(TranslationStorage.getInstance().get("stat." + this.stringId));
+                this.setName(TranslationStorage.getInstance().get("stat." + this.stringId));
             });
         }
     }

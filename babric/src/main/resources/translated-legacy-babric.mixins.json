@@ -1,11 +1,12 @@
 {
   "required": true,
   "package": "fr.catcore.translatedlegacy.babric.mixin",
+  "plugin": "fr.catcore.translatedlegacy.babric.TranslatedLegacyBabricMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "I18nMixin",
     "LevelMixin",
-    "StatMixin",
+    "nostation.StatMixin",
     "TranslationStorageAccessor",
     "TranslationStorageMixin",
     "inventory.ChestMixin",
