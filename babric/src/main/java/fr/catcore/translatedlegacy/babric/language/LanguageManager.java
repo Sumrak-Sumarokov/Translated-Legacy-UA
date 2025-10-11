@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import fr.catcore.translatedlegacy.TranslatedLegacy;
+import fr.catcore.translatedlegacy.babric.mixin.TranslationStorageAccessor;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.resource.language.TranslationStorage;
 
@@ -52,6 +53,8 @@ public class LanguageManager {
 
             loadLanguage(DEFAULT_LANGUAGE);
             loadLanguage(CURRENT_LANGUAGE_CODE);
+
+            addMissingTranslations();
 
             return CODE_TO_STORAGE.get(CURRENT_LANGUAGE_CODE);
         } catch (IOException e) {
@@ -189,6 +192,16 @@ public class LanguageManager {
 
         for (LanguageSwitchCallback languageSwitchCallback : CALLBACKS) {
             languageSwitchCallback.changed(CURRENT_LANGUAGE_CODE);
+        }
+
+        addMissingTranslations();
+    }
+
+    private static void addMissingTranslations() {
+        if (!((TranslationStorageAccessor) TranslationStorage.getInstance()).getTranslations().isEmpty()) {
+            for (Map.Entry<Object, Object> entry : ((TranslationStorageAccessor) TranslationStorage.getInstance()).getTranslations().entrySet()) {
+                CODE_TO_STORAGE.get(DEFAULT_LANGUAGE).add((String) entry.getKey(), (String) entry.getValue());
+            }
         }
     }
 
