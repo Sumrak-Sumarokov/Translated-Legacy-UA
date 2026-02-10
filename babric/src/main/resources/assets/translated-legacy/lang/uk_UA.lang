@@ -1,7 +1,7 @@
 {
   "_comment_1": "Backported translations",
   "menu.savingChunks": "Збереження чанків",
-  "options.language": "Мови",
+  "options.language": "Мови...",
   "options.languageWarning": "Переклади можуть містити помилки або неточності.",
   "container.chest": "Скриня",
   "container.minecart": "Вагонетка",
